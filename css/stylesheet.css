@@ -48,8 +48,8 @@ p {
 	        /* Logo animation */
 
 	/* Animation Time */
-	-webkit-animation-duration: 2s;
-	        animation-duration: 2s;
+	-webkit-animation-duration: 0.1s;
+	        animation-duration: 0.1s;
 
 	/* Times animation plays */
 	-webkit-animation-iteration-count: infinite;
