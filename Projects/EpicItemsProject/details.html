@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta -->
+  <title>Projects | ARace863</title>
+  <meta name="language" content="English">
+  <!-- Local -->
+  <link href="style.css" rel="stylesheet">
+  <!-- External -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  
+  <script>
+    // SpigotMC resource ID	
+    let params = (new URL(document.location)).searchParams;
+    var searchParams = new URLSearchParams(params);
+  
+	//===== Basic: =====//
+	pid = searchParams.toString().replace("=", "");
+	
+	// DELETE FROM HERE
+	if (pid == 0) {
+		alert("Define a SpigotMC resource ID using https://example.com/details.html?12345 \nSetting the ID as 91015 as an example, check your URL now to see what's changed.");
+		window.location.href = "?91015"
+	}	
+	
+	// First 2 digits of the plugin's ID used for the image
+	pid2t = (pid)/1000;
+    pid2 = pid2t >> 0;
+
+    // Download timer seconds (0 to disable) 
+	timer = 0;
+  </script>
+</head>
+
+<body>
+    <main id="main">
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2 id="plugin_title">Loading project...</h2>
+        </div>
+      </div>
+    </section>
+
+    <section id="plugin-details" class="plugin-details">
+      <div id="handlebar-section"><script id="handelbar-script" type="text/x-handlebars-template">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-8">
+            <div class="plugin-info">
+              <h3>Plugin description</h3>
+              <div id="description">Retrieving from SpigotMC</div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="plugin-info">
+			  <!--====-- Side bar --====-->
+              <h3>Plugin information</h3>
+              <img src="https://www.spigotmc.org/data/resource_icons/{{pid2}}/{{pid}}.jpg?1631726048" style="width:150px;height:150px;">
+              <ul>
+				<!-- Plugin name -->
+			    <li><strong>Name</strong>: <div id="name">Loading...</div></li>
+				<!-- Latest version -->
+			    <li><strong>Version</strong>: <div id="version">Loading...</div></li>
+				<!-- Total downloads -->
+                <li><strong>Downloads</strong>: <div id="downloads">Loading...</div></li>
+				<!-- Rating stars -->
+                <li>
+                    <strong>Rating</strong>:<br>
+					<a href="" id="aCount" style="color:#000">
+					  <span id="stars"></span>
+					  <span id="count"></span>
+					</a>
+				</li>
+				<!-- Release date -->
+                <li><strong>Release date</strong>: <div id="release">Loading...</div></li>
+				<!-- Last update date -->
+				<li><strong>Last Update</strong>: <div id="latest">Loading...</div></li>
+				<!-- Open the download menu. Source code is automatically taken from the plugin -->
+				<li><span class="dl-latest" style="cursor:pointer" onclick="openDownload(), startTimer()">Download</span><a class="dl-button" style="margin-left:5px;" id="source">Source Code</a></li>
+              </ul>
+            </div><br>
+ 
+			<!--====-- Download menu --====-->
+            <div id="download-section" class="overlay">
+			  <!-- Close menu if clicked away -->
+              <span class="overlay-content" onclick="closeDownload(), endTimer()">
+			    <!-- Download timer -->
+                <div class="timer" id="timer">
+                    <progress value="0" max="{{timer}}" id="progressBar" style="width:475px"></progress>
+                </div>
+				<!--==-- Downloads --==-->
+                <div id="timerElement">
+                    <iframe src="download/{{pid}}.html" width="90%" height="500px" style="border:1em solid white;margin-left:auto; margin-right:auto; margin-top:-3em; display:block;border-radius: 1em" id="downloadFrame"></iframe>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </script></div> 
+    </section>
+  </main>
+  
+  <!-- Scripts -->	
+  <script src="scripts.js"></script>
+</body>
+</html>
